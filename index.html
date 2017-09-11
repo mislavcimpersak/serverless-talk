@@ -1,0 +1,569 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Serverless</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/night.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<style>
+		td.providers, th.providers {
+			text-align: center;
+			vertical-align: middle;
+			font-size: 0.6em;
+		}
+		ul.no_bullets {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			text-align: center;
+		}
+		li.breathing {
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Serverless</h1>
+				<!-- ovo precrtati pa napisati FaaS? -->
+				<h4>⚡ Buzzword of the season ⚡</h4>
+
+				<br>
+				<br>
+
+				<ul>
+					<li>twitter: <a href="https://twitter.com/MislavCimpersak">@MislavCimpersak</a></li>
+					<li>github: <a href="https://github.com/mislavcimpersak">github.com/mislavcimpersak</a></li>
+				</ul>
+
+				<aside class="notes" data-markdown>
+					- Dobar dio vas me zna, za vas koji me ne znaju, ja sam Mislav.
+					- Nakon više godina nagovaranja nekoliko voditelja našeg meetupa napokon sam popustio Hrvoju i pristao da održim talk.
+					- Serverless je nešto o čemu svi pričamo, a malo nas je stvarno i napravilo nešto konkretno.
+					- U zadnjih par tjedana uzeo sam si vremena da se konačno poigram s ovom novom tehnologijom, pa sam odlučio s vama podijeliti svoja iskustva i neke eksperimente.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Serverless</h2>
+				<h2>&nbsp;</h2>
+				<p>&nbsp;</p>
+
+				<aside class="notes" data-markdown>
+					- Što je uopće "serverless"?
+					- Sam po sebi je to podosta apsurdan pojam, ali je ušao u svakodnevni IT vokabular kao brojni drugi u IT žargonu.
+				</aside>
+			</section>
+
+			<section>
+				<h2 style="text-decoration: line-through;" class="fragment shrink" data-fragment-index="1">Serverless</h2>
+				<h2 class="fragment" data-fragment-index="1">FaaS</h2>
+				<p class="fragment" data-fragment-index="1">Function-as-a-Service</p>
+
+				<aside class="notes" data-markdown>
+					- Serverless ne znači da stvarno ne postoje serveri, već da developeri ne moraju razmišljati o njima.
+					- Tako je u biti, što se tiče developera, serverless stvarno bez servera.
+					- Većina programera danas ne piše kod u asembleru, već koriste moderne programske jezike koji sami znaju koristiti procesor, mrežne resurse, spremljene podatke.
+					- Serverless ovo podiže još jedan korak više, apstrahirajući još jedan sloj - infrastrukturu.
+
+					- Developeri stvaraju male blokove koda - funkcije - koje se pozivaju kada su potrebne.
+					- Kada se funkcija pozove, platforma na kojoj je funkcija spremljena starta resurse potrebne za izvršavanje i vraća rezultat.
+					- Takve funkcije se mogu nizati i međusobno povezivati u svrhu stvaranja kompleksnijih aplikacija.
+					- Svaka funkcija je onda pozvana ako i kada je potrebna, zavisno o logici aplikacije.
+					- Ostatak vremena funkcija ne troši gotovo nikakve resurse.
+
+					- Dakle, ako gledamo serverless kroz prizmu funkcija dolazi se do boljeg naziva tehnologije, a to je Function-as-a-Service.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Providers</h2>
+
+				<table>
+					<tr>
+						<th class="fragment providers" data-fragment-index="1" width="33%">AWS Lambda</th>
+						<th class="fragment providers" data-fragment-index="10" width="33%">Azure Functions</th>
+						<th class="fragment providers" data-fragment-index="10" width="33%">Google Cloud Functions</th>
+					</tr>
+					<tr>
+						<td class="fragment providers" data-fragment-index="1"><img width="100px" src="media/aws_lambda_logo.png"></td>
+						<td class="fragment providers" data-fragment-index="10"><img width="100px" src="media/azure_functions_logo.png"></td>
+						<td class="fragment providers" data-fragment-index="10"><img width="100px" src="media/google_cloud_functions_logo.png"></td>
+					</tr>
+					<tr>
+						<td class="fragment providers" data-fragment-index="20">JS, PY, Java, C#</td>
+						<td class="fragment providers" data-fragment-index="20">JS, PY, C#, F#, PHP, Batch, PowerShell</td>
+						<td class="fragment providers" data-fragment-index="20">JS</td>
+					</tr>
+					<tr>
+						<td class="fragment providers" data-fragment-index="30">S3, SNS, SES, DynamoDB, Kinesis, CloudWatch, Cognito, API Gateway, CodeCommit ...</td>
+						<td class="fragment providers" data-fragment-index="30">Cloud Pub/Sub or Cloud Storage Object Change Notifications</td>
+						<td class="fragment providers" data-fragment-index="30">Blob, EventHub, Generic WebHook, GitHub WebHook, Queue, Http, ServiceBus Queue, Service Bus Topic, Timer triggers</td>
+					</tr>
+				</table>
+				<p style="text-align: left; font-size: 0.7em;" class="fragment"><a href="https://cloudacademy.com/blog/microsoft-azure-functions-vs-google-cloud-functions-fight-for-serverless-cloud-domination-continues/">*detaljnija usporedba</a></p>
+
+				<aside class="notes" data-markdown>
+					- najpoznatiji pružatelj Function as a Service usluga je AWS-ova Lambda
+					- koja je često poistovjećena s Function-as-a-Service rješenjima i većina blog postova na webu govore upravo o njoj.
+					- Ali kako je i za očekivati postoje i ekvivalentna rješenja na drugim cloud providerima.
+
+					- Microsoft ima Azure Functions, a Google ima Google Cloud Functions.
+					- AWS i Azure podržavaju otprilike isti set jezika, dok je Google ostao samo na JS-u
+					- Sva tri providera pružaju jednak free tier od 1M izvršenih requestova mjesečno za sve funkcije u jednom računu.
+
+					- Svi provideri su usko vezani za svoju platformu, pa onda sukladno tome i triggeri koji mogu pokrenuti funkciju su redovito unutar ekosustava providera.
+					- Iznimka je HTTP promet koji je svima zajednički trigger.
+				</aside>
+			</section>
+
+			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/e/eb/Cabo_San_Lucas_Race_B_Start_2013_photo_D_Ramey_Logan.jpg">
+				<h2>Advantages</h2>
+
+				<aside class="notes" data-markdown>
+					- Moram prije nego što počnem pričati o predostima priznati da sam trenutno s FaaS-om u honeymoon fazi.
+					- Sve mi je divno i krasno, a sve loše stvari ne uzimam za zlo.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Idea to launch</h2>
+
+				<aside class="notes" data-markdown>
+					- Ovo je po meni najveći i najvažniji benefit.
+					- Recimo da imate ideju i želite ju čim prije pokazati svijetu.
+					- Uobičajeni koraci za to su:
+					- ideja, pisanje koda, zakup servera, instaliravanje os-a, instaliravanje web servera, instaliravanje wsgi servera, podešavanje supervisora, podešavanje firewalla, podešavanje backupa, još 10 takvih stvari i tek onda launch.
+					- A realno jedino što vas zanima kao developera (pogotovo za nekakav side project) je ideja, pisanje koda i objava stvorenog.
+					- Sve ostalo se može prepustiti nekome drugome.
+					- Što nas vodi do druge prednosti:
+				</aside>
+			</section>
+
+			<section>
+				<h2>No system administration</h2>
+
+				<aside class="notes" data-markdown>
+					- U arhitekturi koja je u potpunosti serverless (sve je bazirano na API-ima) nema potrebe za sistemcem.
+					- Ne postoje bash skripte, startanje i stopiranje servisa itd.
+					- Jedino što je potrebno je napisati kod, zazipati ga i uploadati ga na FaaS platformu.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Automatic scaling</h2>
+
+				<aside class="notes" data-markdown>
+					- Nemamo sistemca, ali imamo skaliranje.
+					- Jednom kada ste napisali svoju funkciju odjednom imate tisuću njih na raspolaganju koje spavaju i čekaju da obave task koji im date i to sve unutar par milisekundi od kada ih aktivirate
+					----
+					- Skaliranje radi u oba smjera
+					- Zašto plaćati za servere kada se ne koriste.
+					- Plaća se samo vremena izvršavanja, ne i hladni pogon.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Parallelization</h2>
+
+				<aside class="notes" data-markdown>
+					- Paralelizacija je povezana s automatskim skaliranjem, ali je ipak drugačija. Ne samo da imate na raspolaganju stotine funkcija koje čekaju vaš task, već imate stotine funkcija koje mogu istovremeno obaviti isti task.
+					- primjer:
+					- Recimo da imamo document store bazu u koju zapisujemo članke.
+					- Recimo da sada želimo na sve članke dodati ili ukloniti neku informaciju.
+					- Uobičajeni način bi bio da se napiše skripta koja bi prolazila kroz jedan po jedan članak i editirala ga.
+					- Imamo 50.000 članaka i editiranje svakog traje 1 sekundu. To je ukupno otprilike 14 sati za 50.000 članaka.
+					- Ako uzmemo u obrzi da je 1000 paralelnih izvršavanja limit na AWS Lambdi, uz pomoć malo pametnije napisane skripte mi možemo upaliti 1000 Lambdi i obaviti sav posao unutar 50 sekundi.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Change in mindset</h2>
+
+				<aside class="notes" data-markdown>
+					- "Promjena razmišljanja" je prednost koja je malo manje opipljiva, ali podosta bitna za današnje aplikacije.
+					- FaaS potiče razvijanje malih dijelova, slobodnije povezanih.
+					- Unix filozofija - probleme je jednostavnije riješiti ako ih se razbije u manje dijelove.
+					- FaaS po tome i savršeno pristaje i potiče arhitekturu mikroservisa.
+				</aside>
+			</section>
+
+			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/d/dc/Dried_mud_%28La_Fajana%29_03_ies.jpg">
+				<h2>Disadvantages</h2>
+
+				<aside class="notes" data-markdown>
+					- Naravno, nije sve bajno.
+					- Mane postoje.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Vendor lock in</h2>
+
+				<aside class="notes" data-markdown>
+					- Svi veliki provideri (pružatelji usluga) imaju svoju zatvorenu i specifičnu samo njima implementaciju.
+					- Postoje u nekim projektima pokušaji da se stvore slojevi abstrakcije koji se bore s ovim problemom i omogućuju da se napisani kod vrti na bilo kojem pružatelju usluga.
+					- Na žalost, za sada je to više u fazi pokušaja, nego da je out-of-the-box rješenje.
+				</aside>
+			</section>
+
+			<section>
+				<h2>Cold start</h2>
+
+				<p style="font-size: 0.8em;">
+					<a href="https://read.acloud.guru/does-coding-language-memory-or-package-size-affect-cold-starts-of-aws-lambda-a15e26d12c76">*thorough analysis</a>
+				</p>
+
+				<aside class="notes" data-markdown>
+					- Pod prednostima sam naveo da funkcije kada se ne koriste se "ugase" što je dobra stvar. Loša stvar je da im je za ponovno paljenje inicijalno potrebno nešto više vremena.
+					- AWS ubija funkcije nakon više od 5 minuta neaktivnosti. Ponekad je to pola sata, a ponekad 5 minuta i 2 sekunde. Zašto ubija točno kada ubija, to samo Amazon zna.
+					- Mi Python developeri imamo ovdje sreće, jer se kod Pythona i dalje radi o par sekundi, dok se Java i C# developeri trebaju pripremiti i na 100 puta dulji start.
+					- Dao sam ovdje link na blog post u kojemu jedan developer podosta ekstenzivno radi usporedbe, zanimljivo pogledati ako zbog ničeg drugoga onda da vidite kako nam je lijepo što radimo s Pythonom.
+					- Povećanjem memorije koju date funkciji smanjujete vrijeme hladnog paljenja
+					- začuđujuće, veličina paketa ne utječe na vrijeme hladnog paljenja
+				</aside>
+			</section>
+
+			<section>
+				<h2>Maturity</h2>
+
+				<aside class="notes" data-markdown>
+					- serverless kao ideja postoji tek 3 godine
+					- Stvari se i dalje mijenjaju, često u pozadini bez objašnjenja pružatelja usluga.
+					- Nove funkcionalnosti se dosta polako uvode (Google i dalje ima samo podršku za JavaScript, AWS Lambda ne može pratiti Simple Queue Service Evente...)
+					- debugging je problematičan, često se svede na try-and-error
+				</aside>
+			</section>
+
+			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/f/f7/Helicopters_Prepare_for_Deployment.jpg">
+				<h2>Deployment</h2>
+
+				<aside class="notes" data-markdown>
+					- iskreno, može se sve napraviti ručno, preko AWS management console, ali nemojte, nepotrebno si komplicirate život
+					- ako ste obrisali funkciju, obrisali ste i sve postavke vezane za nju, ako koristite alate onda sve postavke imate u version control sustavu i lako napravite ponovni deploy.
+					- također, podešavanje API gatewaya nikad nije nikome stavilo osmijeh na lice
+				</aside>
+			</section>
+
+			<section>
+				<ul class="no_bullets" style="text-align: left;">
+					<li>
+						<a href="https://aws.amazon.com/cli/">AWS cli</a>
+						<pre class="fragment" style="width: 110%;" data-fragment-index="15"><code data-trim data-noescape>
+							aws lambda update-function-code --function-name
+							arn:aws:lambda:region:your-lambda-function
+							--zip-file fileb://dist/function.zip --publish
+						</code></pre>
+					</li>
+					<li class="fragment" data-fragment-index="20">
+						<a href="https://serverless.com/">Serverless</a>
+						<pre class="fragment" data-fragment-index="25"><code data-trim data-noescape>
+							serverless deploy
+						</code></pre>
+					</li>
+					<li class="fragment" data-fragment-index="20">
+						<a href="https://github.com/aws/chalice">Chalice</a>
+						<pre class="fragment" data-fragment-index="25"><code data-trim data-noescape>
+							chalice deploy
+						</code></pre>
+					</li>
+					<li class="fragment" data-fragment-index="20">
+						<a href="https://github.com/Miserlou/Zappa/">Zappa</a>
+						<pre class="fragment" data-fragment-index="25"><code data-trim data-noescape>
+							zappa deploy prod
+						</code></pre>
+					</li>
+				</ul>
+
+				<aside class="notes" data-markdown>
+					- Za početak tu je AWS-ov command line interface.
+					- nije veliki korak naprijed od ručnog podešavanja, pogotovo kada shvatite koja kobasica je potrebna za inicijalni deployment
+
+					- zato su se i razvila tri alata koji olakšavaju cijelokupni deployment i update
+					- Serverless je toolkit za postavljanje serverless arhitekture.
+					- Razvijan kao alat za JS, Python, Javu i C#.
+					- Trude se biti i platform agnostic, ali je na žalost na trenutke to nemoguće zbog samih providera.
+
+					- Chalice je razvio AWS i reklamira ga kao "Python Serverless Microframework"
+					- slično kao i Flask koristi dekoratore za rute
+					- u potpunosti je orijentiran na serverless i minimalizam i daje jednostavno cli sučelje prema Lambdi
+					- preporuka ako imate u glavi nešto brutalno jednostavno s jednim ili dva API pointa
+					- sve u svemu, dobar alat
+
+					- Zappa je nastala kao ideja da se omogući deployanje WSGI appova na Lambdu.
+					- Razmišljajte u okvirima Djanga, Flaska, Bottlea, novog APIStara i sličnih.
+					- Zappa sama podesi API Gateway tako da kada dođe request Gateway pokrene Lambda funkciju.
+					- Funkcija prima request i obrađuje ga.
+					- Kada funkcija obavi svoje, response se šalje opet kroz API Gateway i dalje do klijenta.
+
+					- Zajedničko svima trima je jednostavnost.
+					- Odaberite alat koji vama ima najviše smisla za vaše potrebe.
+				</aside>
+			</section>
+
+			<section>
+				<img src="media/xkcd_uploading_to_aws.png" alt="">
+
+				<aside class="notes" data-markdown>
+					- inače, kada lupite `deploy` ili `update` je trenutak u kojemu počinjete shvaćati brzinu uploada koju imate kod kuće
+					- dobra stvar je da deployment ne čini funkciju nedostupnom, već kada se sljedeća instanca starta, starta se s novim kodom.
+
+					- Meni se osobno najviše sviđa Zappa, pa sam stoga i s njom složio sljedeće primjere.
+				</aside>
+			</section>
+
+			<section data-background-image="media/space.jpeg">
+				<h2>Examples</h2>
+
+				<aside class="notes" data-markdown>
+					- Kada sam prije par dana počeo pripremati talk za ovaj Meetup razmišljao sam kakav primjer bi pokazao.
+					- Htio sam vam pokazati nešto dovoljno zanimljivo, a opet ne prekomplicirano da sebi ne zagorčam život.
+					- I sjetio sam se jedne zafrkancije od prije par mjeseci.
+					- Ideja koja je stajala sa strane baš iz razloga jer mi se nije samo zbog toga plaćalo hosting i podešavalo server.
+					- Iskreno, jedino što mi se dalo je napisati 20-30 linija koda i pustiti tu zafrkanciju van.
+				</aside>
+			</section>
+
+			<section>
+				<h2>@realGrickiTop</h2>
+
+				<div class="fragment" data-fragment-index="1">
+					<a href="https://twitter.com/realGrickiTop">twitter.com/realGrickiTop</a>
+				</div>
+				<img class="fragment" data-fragment-index="1" src="media/realGrickiTop.png" alt="">
+
+				<aside class="notes" data-markdown>
+					- a ta zafrkancija je bila "realGričkiTop"
+					- twitter account koji poput i "realDonaldTrump" accounta svaki dan očekivano točno u podne tweeta gluposti
+				</aside>
+			</section>
+
+			<section>
+				<div>
+					<h4 style="text-align: left; font-size:0.8em;">main.py</h4>
+					<pre><code data-trim data-noescape>
+def post_tweet(event, context):
+  poster = Poster()
+  poster.post()
+					</code></pre>
+				</div>
+				<div class="fragment" fragment-data-index="1">
+					<h4 style="text-align: left; font-size:0.8em;">zappa_settings.json</h4>
+					<pre><code data-trim data-noescape>
+{
+  "prod": {
+    "aws_region": "eu-central-1",
+    "s3_bucket": "realgrickitop",
+    "remote_env": "s3://realgrickitop/secrets.json",
+    "apigateway_enabled": false
+  }
+}
+					</code></pre>
+				</div>
+
+				<div class="fragment" fragment-data-index="2">
+					<h4 style="text-align: left; font-size:0.8em;">shell</h4>
+					<pre><code data-trim data-noescape>
+zappa deploy prod
+zappa invoke prod 'main.post_tweet'
+					</code></pre>
+				</div>
+
+				<aside class="notes" data-markdown>
+					- Za prvu verziju stvar je bil poprilično jednostavna.
+					- Napisao sam tridesetak linija koda koje su se svele na poziv moje custom metode za postanje tweeta.
+					- Ovdje imam bazični `zappa_settings.json` file.
+					- `aws_region` je dovoljno da je samo jedan, može se deployati i globalno, ali za ovaj primjer nema smisla.
+					- `secrets.py` je "flat" json file u kojemu su zapisani svi credentialsi i on je hostan na S3 bucketu.
+					- Tako ovaj kod može biti i open sourcean.
+
+					- Budući da je ovo funkcija koja ne treba biti dostupna preko HTTP-a, onemogućio sam API Gateway.
+					- I na koncu sam deployao na lambdu.
+					- Zappa ima posebnu komandu kojom se može pozvati bilo koja funkcija na Lambdi za lako testiranje
+					- i sve je radilo savršeno
+				</aside>
+			</section>
+
+			<section>
+				<ul>
+					<li class="breathing">AWS servers on UTC</li>
+					<li class="fragment breathing">Live debugging</li>
+					<li class="fragment breathing">Zappa packages everything</li>
+				</ul>
+
+				<aside class="notes" data-markdown>
+					- I tu su onda počeli problemi.
+					- Najveći da se tweet stvarno i posta svaki dan u podne.
+					- U Hrvatskoj.
+					- AWS-ovi serveri su na UTC vremenu, a Hrvatska jelte nije.
+					- Postavljanje time zone aware schedulera koji još pazi na daylight saving hours je apsurdno.
+					- Debugiranje zašto nešto ne radi je hit and miss.
+					- Zappa radi nepotrebno velike .zip fajlove. Zašto? Ne znam.
+					- Kopa po site-packages i samo ubacuje sve, od pep8 paketa, pytest-a, coveragea, jupytera... Sve.
+					- Rješenje je pisanje poprilično dugačke liste excludeova.
+					- I onda opet try-and-error da uopće vidim dal funkcija i dalje radi.
+				</aside>
+			</section>
+
+			<section>
+				<h2>XKCD Excuse Generator</h2>
+
+				<div class="fragment" data-fragment-index="1">
+					<a href="https://zhrx77k67l.execute-api.eu-central-1.amazonaws.com/prod/blank"><code>/blank</code></a>
+				</div>
+				<img class="fragment" data-fragment-index="1" src="media/xkcd_blank_excuse.png" alt="">
+
+				<aside class="notes" data-markdown>
+					- Ideja za drugi primjer je došla dok sam pripremao ovaj talk.
+					- Uzima ovu praznu sliku i pretvara ju u sliku sa željenim izgovorom.
+					- Sada možemo kliknuti na ovaj link i isprobati stvari u browseru.
+						- "my dependencies are installing"/"deps"
+						- "my docker image is building"/"building"
+				</aside>
+			</section>
+
+			<section>
+				<pre style="width: 110%;"><code data-trim data-noescape>
+app = Flask(__name__)
+
+@app.route('/blank', methods=['GET'])
+def blank():
+  with open(os.path.join(dir_path, 'blank_excuse.png'), 'rb') as blank:
+	return send_file(BytesIO(blank.read()),
+	  attachment_filename='blank_excuse.png', mimetype='image/png')
+
+
+@app.route('/', methods=['GET'])
+def root():
+  ...
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0')
+				</code></pre>
+
+				<aside class="notes" data-markdown>
+					- U osnovi to je obični Flask app
+					- Štos je da serviram generirane slike direktno iz Lambde.
+					- Slike nikad nisu spremljene, a da jesu, trebale bi biti na S3, pa bi onda u idealnom svijetu imao i neki cache ispred toga i tako dalje...
+					- Uglavnom, bar pola sata više posla :D
+					- A i ovako mi sve ostaje unutar troškova Lambde.
+				</aside>
+			</section>
+
+			<section>
+				<pre><code data-trim data-noescape>
+{
+  "prod": {
+  	"app_function": "app.app",
+  	"aws_region": "eu-central-1",
+  	"profile_name": "mislavcimpersak",
+  	"s3_bucket": "excuse-generator"
+  },
+  "dev": {
+  	"extends": "prod",
+  	"debug": true
+  }
+}
+				</code></pre>
+
+				<aside class="notes" data-markdown>
+					- S ovim primjerom sam se više igrao i čak u nekom trenu poslao nekim ljudima link.
+					- Pa stoga nisam mogao samo tako editirati postojeću funkciju.
+					- Tu sam iskoristio mogućnost Zappe da radim deploy na više stageova.
+				</aside>
+			</section>
+
+			<section>
+				<ul>
+					<li class="breathing">Image serving</li>
+					<li class="fragment breathing">IOpipe monitoring and WSGI apps</li>
+				</ul>
+
+				<aside class="notes" data-markdown>
+					- Dosta ručne zafrkancije je potrebno za serviranje slike direktno.
+					- Vjerojatno se to još može optimizirati, ali budući da je složeno za manje od sat vremena sam zadovoljan.
+					- na žalost IOpipe koji mi je bio izvrstan za monitoring non-WSGI funkcija ne radi za WSGI app-ove.
+					- Trenutno je python plugin "na pauzi".
+					- Šteta jer je IOpipe realno jedini specijalizirani monitoring funkcija.
+				</aside>
+			</section>
+
+			<section data-background-image="media/wrap_up.jpeg">
+				<h2>Wrap up</h2>
+
+				<aside class="notes" data-markdown>
+					- FaaS je fantastičan za microservices
+					- ali nemojte biti ludi i cijelu arhitekturu postaviti na serverlessu.
+					- Da, ima i takvih primjera.
+					- Ako imate neki mini projektić ili možete izdvojiti neki dio vašeg sustava, go for it.
+					- Prihvatite Function-as-a-service način razmišljanja čim ranije, FaaS is here to stay.
+				</aside>
+			</section>
+
+			<section>
+				<h3>p.s. Styria Media IT <br> hiring DevOps</h3>
+
+				<img style="background-color: white;" src="media/styria_mediait_logo.png" alt="">
+
+				<ul class="no_bullets">
+					<li><a href="https://www.styriamedia.tech/">www.styriamedia.tech</a></li>
+					<li><a href="mailto:office@styria.hr">office@styria.hr</a></li>
+				</ul>
+
+				<aside class="notes" data-markdown>
+					- Za kraj samo napomena da Styriin ured u Hrvatskoj trentno traži DevOps-a.
+					- Posao je zanimljiv, klijenti raznoliki, ekipa super.
+					- Svi zainteresirani popričajte s Tomislavom ili Ivanom poslije predavanja.
+				</aside>
+			</section>
+
+			<section>
+				<ul>
+					<li class="breathing"><a href="https://mislavcimpersak.github.io/serverless-talk/">mislavcimpersak.github.io/serverless-talk</a></li>
+					<li class="breathing"><a href="https://github.com/mislavcimpersak/realGrickiTop">github.com/mislavcimpersak/realGrickiTop</a></li>
+					<li class="breathing"><a href="https://github.com/mislavcimpersak/xkcd-excuse-generator">github.com/mislavcimpersak/xkcd-excuse-generator</a></li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			history: true,
+			transition: 'fade',
+
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+			{ src: 'plugin/markdown/marked.js' },
+			{ src: 'plugin/markdown/markdown.js' },
+			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+</body>
+</html>
