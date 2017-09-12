@@ -83,7 +83,7 @@
 				<aside class="notes" data-markdown>
 					- Serverless ne znači da stvarno ne postoje serveri, već da developeri ne moraju razmišljati o njima.
 					- Tako je u biti, što se tiče developera, serverless stvarno bez servera.
-					- Većina programera danas ne piše kod u asembleru, već koriste moderne programske jezike koji sami znaju koristiti procesor, mrežne resurse, spremljene podatke.
+					- Većina programera danas ne piše kod u asembleru, već koriste moderne programske jezike koji sami znaju koristiti procesor, memoriju, mrežne resurse, spremljene podatke.
 					- Serverless ovo podiže još jedan korak više, apstrahirajući još jedan sloj - infrastrukturu.
 
 					- Developeri stvaraju male blokove koda - funkcije - koje se pozivaju kada su potrebne.
@@ -137,7 +137,7 @@
 				</aside>
 			</section>
 
-			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/e/eb/Cabo_San_Lucas_Race_B_Start_2013_photo_D_Ramey_Logan.jpg">
+			<section data-background-image="media/sailboats.jpg">
 				<h2>Advantages</h2>
 
 				<aside class="notes" data-markdown>
@@ -150,7 +150,7 @@
 				<h2>Idea to launch</h2>
 
 				<aside class="notes" data-markdown>
-					- Ovo je po meni najveći i najvažniji benefit.
+					- Vrijeme do objave je po meni najveći i najvažniji benefit.
 					- Recimo da imate ideju i želite ju čim prije pokazati svijetu.
 					- Uobičajeni koraci za to su:
 					- ideja, pisanje koda, zakup servera, instaliravanje os-a, instaliravanje web servera, instaliravanje wsgi servera, podešavanje supervisora, podešavanje firewalla, podešavanje backupa, još 10 takvih stvari i tek onda launch.
@@ -193,7 +193,7 @@
 					- Recimo da sada želimo na sve članke dodati ili ukloniti neku informaciju.
 					- Uobičajeni način bi bio da se napiše skripta koja bi prolazila kroz jedan po jedan članak i editirala ga.
 					- Imamo 50.000 članaka i editiranje svakog traje 1 sekundu. To je ukupno otprilike 14 sati za 50.000 članaka.
-					- Ako uzmemo u obrzi da je 1000 paralelnih izvršavanja limit na AWS Lambdi, uz pomoć malo pametnije napisane skripte mi možemo upaliti 1000 Lambdi i obaviti sav posao unutar 50 sekundi.
+					- Ako uzmemo u obrzi da je 1000 paralelnih izvršavanja limit na AWS Lambdi, uz pomoć malo pametnije napisane skripte mi možemo upaliti 1000 Lambdi i obaviti sav posao ispod minute.
 				</aside>
 			</section>
 
@@ -203,12 +203,12 @@
 				<aside class="notes" data-markdown>
 					- "Promjena razmišljanja" je prednost koja je malo manje opipljiva, ali podosta bitna za današnje aplikacije.
 					- FaaS potiče razvijanje malih dijelova, slobodnije povezanih.
-					- Unix filozofija - probleme je jednostavnije riješiti ako ih se razbije u manje dijelove.
+					- Unix filozofija u unix način razmišljanja - probleme je jednostavnije riješiti ako ih se razbije u manje dijelove.
 					- FaaS po tome i savršeno pristaje i potiče arhitekturu mikroservisa.
 				</aside>
 			</section>
 
-			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/d/dc/Dried_mud_%28La_Fajana%29_03_ies.jpg">
+			<section data-background-image="media/dried_mud.jpg">
 				<h2>Disadvantages</h2>
 
 				<aside class="notes" data-markdown>
@@ -221,7 +221,7 @@
 				<h2>Vendor lock in</h2>
 
 				<aside class="notes" data-markdown>
-					- Svi veliki provideri (pružatelji usluga) imaju svoju zatvorenu i specifičnu samo njima implementaciju.
+					- Svi veliki provideri imaju svoju zatvorenu i specifičnu samo njima implementaciju.
 					- Postoje u nekim projektima pokušaji da se stvore slojevi abstrakcije koji se bore s ovim problemom i omogućuju da se napisani kod vrti na bilo kojem pružatelju usluga.
 					- Na žalost, za sada je to više u fazi pokušaja, nego da je out-of-the-box rješenje.
 				</aside>
@@ -255,11 +255,11 @@
 				</aside>
 			</section>
 
-			<section data-background-image="https://upload.wikimedia.org/wikipedia/commons/f/f7/Helicopters_Prepare_for_Deployment.jpg">
+			<section data-background-image="media/helicopters_deployment.jpg">
 				<h2>Deployment</h2>
 
 				<aside class="notes" data-markdown>
-					- iskreno, može se sve napraviti ručno, preko AWS management console, ali nemojte, nepotrebno si komplicirate život
+					- iskreno, može se sve napraviti ručno, preko AWS management console, ali nemojte, nepotrebno si komplicirate život.
 					- ako ste obrisali funkciju, obrisali ste i sve postavke vezane za nju, ako koristite alate onda sve postavke imate u version control sustavu i lako napravite ponovni deploy.
 					- također, podešavanje API gatewaya nikad nije nikome stavilo osmijeh na lice
 				</aside>
