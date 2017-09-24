@@ -81,8 +81,8 @@
 				<p class="fragment" data-fragment-index="1">Function-as-a-Service</p>
 
 				<aside class="notes" data-markdown>
-					- Serverless doesn' really mean that there are no servers, but that the developers don't have to worry about them.
-					- So in essence, at least from the developer point of view, serverless really is without servers.
+					- Serverless doesn't really mean that there are no servers, but that the developers don't have to worry about them.
+					- So in essence, at least from the developers point of view, serverless really is without servers.
 					- These days most developers aren't writing their code in assembly. Instead they are using modern programming languages that know on their own how to properly use CPU, memory, network resources, stored data.
 					- Serverless takes this even one step further, apstracting another layer - infrastructure.
 
@@ -124,16 +124,16 @@
 				<p style="text-align: left; font-size: 0.7em;" class="fragment"><a href="https://cloudacademy.com/blog/microsoft-azure-functions-vs-google-cloud-functions-fight-for-serverless-cloud-domination-continues/">*detaljnija usporedba</a></p>
 
 				<aside class="notes" data-markdown>
-					- najpoznatiji pružatelj Function-as-a-Service usluga je AWS-ova Lambda
-					- koja je često poistovjećena s Function-as-a-Service rješenjima i većina blog postova na webu govore upravo o njoj.
-					- Ali kako je i za očekivati postoje i ekvivalentna rješenja na drugim cloud providerima.
+					- AWS's Lambda is the most famous Function-as-aservice provider.
+					- Most of the blog posts you can find online talks about it.
+					- But, as it expected, there are equivalent solutions on other cloud providers.
 
-					- Microsoft ima Azure Functions, a Google ima Google Cloud Functions.
-					- AWS i Azure podržavaju otprilike isti set jezika, dok je Google ostao samo na JS-u
-					- Sva tri providera pružaju jednak free tier od 1M izvršenih requestova mjesečno za sve funkcije u jednom računu.
+					- Microsoft has Azure Functions and Google has Google Cloud Functions.
+					- Aproximately same set of programming languages are supported by AWS and Azure, while Google only supports JS.
+					- All three provides allow same free tier of 1M monthly requests for all functions per account.
 
-					- Svi provideri su usko vezani za svoju platformu, pa onda sukladno tome i triggeri koji mogu pokrenuti funkciju su redovito unutar ekosustava providera.
-					- Iznimka je HTTP promet koji je svima zajednički trigger.
+					- All providers are tightly integrated in their platforms. And thus acordingly the triggers that can run a function are regulary with the provider's ecosystem.
+					- The obvious exception is HTTP traffic that is a common trigger for all of them.
 				</aside>
 			</section>
 
