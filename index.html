@@ -436,9 +436,9 @@ zappa invoke prod 'main.post_tweet'
 				<img class="fragment" data-fragment-index="1" src="media/xkcd_blank_excuse.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- Ideja za drugi primjer je došla dok sam pripremao ovaj talk.
-					- Uzima ovu praznu sliku i pretvara ju u sliku sa željenim izgovorom.
-					- Sada možemo kliknuti na ovaj link i isprobati stvari u browseru.
+					- Idea for the second example came to me while I was preparing this talk.
+					- It takes this empty image and transforms it into an image with the desired excuse.
+					- Now we can click this URL and try it in a browser.
 						- "my dependencies are installing"/"deps"
 						- "my docker image is building"/"building"
 				</aside>
@@ -464,11 +464,11 @@ if __name__ == "__main__":
 				</code></pre>
 
 				<aside class="notes" data-markdown>
-					- U osnovi to je obični Flask app
-					- Štos je da serviram generirane slike direktno iz Lambde.
-					- Slike nikad nisu spremljene, a da jesu, trebale bi biti na S3, pa bi onda u idealnom svijetu imao i neki cache ispred toga i tako dalje...
-					- Uglavnom, bar pola sata više posla :D
-					- A i ovako mi sve ostaje unutar troškova Lambde.
+					- Basically, it's a normal Flask app.
+					- The gist of it is that I'm serving images directly from Lambda.
+					- Images are never saved, and if they were, they should be saved on S3, and in an ideal world cached and so on and so on.
+					- At least half an hour more work :D
+					- And this way everything and all the costs stay within Lambda.
 				</aside>
 			</section>
 
@@ -502,11 +502,12 @@ if __name__ == "__main__":
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- Dosta ručne zafrkancije je potrebno za serviranje slike direktno.
-					- Vjerojatno se to još može optimizirati, ali budući da je složeno za manje od sat vremena sam zadovoljan.
-					- na žalost IOpipe koji mi je bio izvrstan za monitoring non-WSGI funkcija ne radi za WSGI app-ove.
-					- Trenutno je razvoj python plugina "na pauzi".
-					- Šteta jer je IOpipe realno jedini specijalizirani monitoring FaaS-ova.
+					- It taks a bit of fooling around to serve images directly.
+					- Probably it can still be optimized, but since it was setup up in less than an hour, I'm happy.
+					- Unfortunately, IOpipe which was excellent for monitoring non-WSGI functions isn't working for WSGI apps.
+					- The development of the official python plugin is currently on break.
+					- I've tried to add somethings to it, but still no response on the official Github repo.
+					- Too bad since IOpipe is really the only specialized FaaS monitoring service.
 				</aside>
 			</section>
 
