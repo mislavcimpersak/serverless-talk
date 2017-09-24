@@ -141,8 +141,8 @@
 				<h2>Advantages</h2>
 
 				<aside class="notes" data-markdown>
-					- Moram prije nego što počnem pričati o predostima priznati da sam trenutno s FaaS-om u honeymoon fazi.
-					- Sve mi je divno i krasno, a sve loše stvari ne uzimam za zlo.
+					- Before I continue talking about advantages I must confess that I'm currently in a honeymoon phase with FaaS.
+					- Everything is beautiful and dandy, and everything that is not so great I'm not seeing as such a bad thing.
 				</aside>
 			</section>
 
@@ -150,12 +150,13 @@
 				<h2>Idea to launch</h2>
 
 				<aside class="notes" data-markdown>
-					- Vrijeme do objave je po meni najveći i najvažniji benefit.
-					- Recimo da imate ideju i želite ju čim prije pokazati svijetu.
-					- Uobičajeni koraci za to su:
-					- ideja, pisanje koda, zakup servera, instaliravanje os-a, instaliravanje web servera, instaliravanje wsgi servera, podešavanje supervisora, podešavanje firewalla, podešavanje backupa, još 10 takvih stvari i tek onda launch.
-					- A realno jedino što vas zanima kao developera (pogotovo za nekakav side project) je ideja, pisanje koda i objava stvorenog.
-					- Sve ostalo se može prepustiti nekome drugome.
+					- Time to launch is by far the biggest and most important benefit.
+					- Let's say you have an idea and you wan't to show it to the world as soon as possible.
+					- The usual steps for it are:
+					- the idea itself, writing code, buying a server, installing OS, installing web server, installing WSGI server, setting up supervisor, setting up firewall, setting up backup, and 10 more tasks like that and only than launch.
+					- And honestly, the only thing that is of any interest to you as a developer (especially for a side project) is idea, writing code and publishing your creation.
+					- Anything else can be someone else's problem.
+					- Which leads us to the second advantage:
 					- Što nas vodi do druge prednosti:
 				</aside>
 			</section>
@@ -164,9 +165,9 @@
 				<h2>No system administration</h2>
 
 				<aside class="notes" data-markdown>
-					- U arhitekturi koja je u potpunosti serverless (sve je bazirano na API-ima) nema potrebe za sistemcem.
-					- Ne postoje bash skripte, startanje i stopiranje servisa itd.
-					- Jedino što je potrebno je napisati kod, zazipati ga i uploadati ga na FaaS platformu.
+					- In a completely serverless architecture there is no need for a sys admin.
+					- There are no bash scripts, starting and stoping services and things like that.
+					- Only thing that is necessary is writing the code, packaging it and uploading it to a FaaS platform.
 				</aside>
 			</section>
 
@@ -174,12 +175,12 @@
 				<h2>Automatic scaling</h2>
 
 				<aside class="notes" data-markdown>
-					- Nemamo sistemca, ali imamo skaliranje.
-					- Jednom kada ste napisali svoju funkciju odjednom imate tisuću njih na raspolaganju koje spavaju i čekaju da obave task koji im date i to sve unutar par milisekundi od kada ih aktivirate
+					- We don't have sys admins, but we do have scaling.
+					- Once you have written your function, suddenly you have thousands of them at your disposal that are sleeping and just waiting to complete a task you provide them and all that withing microseconds from activation.
 					----
-					- Skaliranje radi u oba smjera
-					- Zašto plaćati za servere kada se ne koriste.
-					- Plaća se samo vremena izvršavanja, ne i hladni pogon.
+					- Of course, scaling works both ways.
+					- Why pay for servers when you are not using them.
+					- You only pay for executions, not the server's idle time.
 				</aside>
 			</section>
 
@@ -212,8 +213,8 @@
 				<h2>Disadvantages</h2>
 
 				<aside class="notes" data-markdown>
-					- Naravno, nije sve bajno.
-					- Mane postoje.
+					- Of course, not everyting is so great.
+					- There are flaws.
 				</aside>
 			</section>
 
@@ -487,9 +488,9 @@ if __name__ == "__main__":
 				</code></pre>
 
 				<aside class="notes" data-markdown>
-					- S ovim primjerom sam se više igrao i čak u nekom trenu poslao nekim ljudima link.
-					- Pa stoga nisam mogao samo tako editirati postojeću funkciju.
-					- Tu sam iskoristio mogućnost Zappe da radim deploy na više stageova.
+					- With this example I've toyed a bit more and even at some point send the URL to some people.
+					- Because of it I couldn't just edit and test existing function.
+					- So here I took Zappa's advantage of creating several deploy stages.
 				</aside>
 			</section>
 
@@ -512,11 +513,11 @@ if __name__ == "__main__":
 				<h2>Wrap up</h2>
 
 				<aside class="notes" data-markdown>
-					- FaaS je fantastičan za microservices
-					- ali nemojte biti ludi i cijelu arhitekturu postaviti na serverlessu.
-					- Da, ima i takvih primjera.
-					- Ako imate neki mini projektić ili možete izdvojiti neki dio vašeg sustava, go for it.
-					- Prihvatite Function-as-a-service način razmišljanja čim ranije, FaaS is here to stay.
+					- FaaS is fantastic for microservices
+					- but don't go crazy and plan your whole architecture on serverless.
+					- Yes, I've seen such examples.
+					- If you have some mini project or you can take out a piece of your system, go for it.
+					- Embrace Function-as-a-Service state of mind as soon as possible; FaaS is here to stay.
 				</aside>
 			</section>
 
