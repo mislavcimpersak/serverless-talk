@@ -303,10 +303,10 @@
 					- For start we have AWS's command line interface
 					- Not a big upgrade from manual configurations, especially when you see the lenghty piece of command you need for initial deployment.
 
-					- zato su se i razvila tri alata koji olakšavaju cijelokupni deployment i update
-					- Serverless je toolkit za postavljanje serverless arhitekture.
-					- Razvijan kao alat za JS, Python, Javu i C#.
-					- Trude se biti i platform agnostic, ali je na žalost na trenutke to nemoguće zbog samih providera.
+					- Because of this complex procedure three tools were developed that take out the guess work out of deployment and update.
+					- Serverles is a toolkit for setting up serverless architecture.
+					- It is being developed as a tool for JS, Python, Java and C#.
+					- Project developers are trying to be platform agnostic, but unfortunately that is still impossible because of the providers them self.
 
 					- Chalice was created by AWS and is advertised as "Python Serverless Microframework".
 					- Similar to Flask it uses decorators for declaring routes.
@@ -314,11 +314,11 @@
 					- Recommendation if you plan to do something brutally simple with max one or two API points with minimum logic.
 					- All in all, a solid tool.
 
-					- Zappa je nastala kao ideja da se omogući deployanje WSGI appova na Lambdu.
-					- Razmišljajte u okvirima Djanga, Flaska, Bottlea, novog APIStara i sličnih.
-					- Zappa sama podesi API Gateway tako da kada dođe request Gateway pokrene Lambda funkciju.
-					- Funkcija prima request i obrađuje ga.
-					- Kada funkcija obavi svoje, response se šalje opet kroz API Gateway i dalje do klijenta.
+					- Zappa was created as an idea to enable deployment of WSGI apps to Lambda.
+					- Think about likes like Django, Flask, Bottle, new APIStar etc.
+					- Zappa sets up API gateway on it's own, so that when an http request arrives, Gateway starts the function.
+					- Function than takes the request and processes it.
+					- When the function is done, response is being set back through API gateway all the way to the client.
 
 					- A common thing for all three tools is simplicity.
 					- So just choose a tool that makes most sense for your needs.
@@ -329,10 +329,10 @@
 				<img src="media/xkcd_uploading_to_aws.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- inače, kada lupite `deploy` ili `update` je trenutak u kojemu počinjete shvaćati brzinu uploada koju imate kod kuće
-					- dobra stvar je da deployment ne čini funkciju nedostupnom, već kada se sljedeća instanca starta, starta se s novim kodom.
+					- Btw. when you hit `deploy` or `update` is the moment in which you start to understand the snail speed of local ISPs.
+					- Good thing is that the deployment is not making the funciton to be unavailable, but when a new instance is started it is started with the new code.
 
-					- Meni se osobno najviše sviđa Zappa, pa sam stoga i s njom složio sljedeće primjere.
+					- I preferrer Zappa, so that's the one I chose for the next couple of examples.
 				</aside>
 			</section>
 
