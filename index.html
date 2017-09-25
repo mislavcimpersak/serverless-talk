@@ -45,7 +45,6 @@
 		<div class="slides">
 			<section>
 				<h1>Serverless</h1>
-				<!-- ovo precrtati pa napisati FaaS? -->
 				<h4>⚡ Buzzword of the season ⚡</h4>
 
 				<br>
@@ -237,12 +236,13 @@
 				</p>
 
 				<aside class="notes" data-markdown>
-					- Pod prednostima sam naveo da funkcije kada se ne koriste se "ugase" što je dobra stvar. Loša stvar je da im je za ponovno paljenje inicijalno potrebno nešto više vremena.
-					- AWS ubija funkcije nakon više od 5 minuta neaktivnosti. Ponekad je to pola sata, a ponekad 5 minuta i 2 sekunde. Zašto ubija točno kada ubija, to samo Amazon zna.
-					- Mi Python developeri imamo ovdje sreće, jer se kod Pythona i dalje radi o par sekundi, dok se Java i C# developeri trebaju pripremiti i na 100 puta dulji start.
-					- Dao sam ovdje link na blog post u kojemu jedan developer podosta ekstenzivno radi usporedbe, zanimljivo pogledati ako zbog ničeg drugoga onda da vidite kako nam je lijepo što radimo s Pythonom.
-					- Povećanjem memorije koju date funkciji smanjujete vrijeme hladnog paljenja
-					- začuđujuće, veličina paketa ne utječe na vrijeme hladnog paljenja
+					- Under advantages I've said that functions when not used are "turned off" what is a good thing.
+					- Bad thing is that for the initial start it takes a bit more time.
+					- AWS kill functions after more than 5 minutes of inactivity. Sometimes that's half an hour and sometimes 5 minutes and 2 secs. Why does it kill them exactly when it kills them, only Amazon knows.
+					- We as Python developers are in luck, because when it comes to Python it is still only a few seconds max, while Java and C# developers need to prepare them self for more than 100 times lower starting times.
+					- I gave here an URL to a blogpost in which a developer does a really extensive comparison, it's interesting to have a look if for nothing more than to see how nice it is to be a Python developer.
+					- Increasing memory available to function lowers down cold start time.
+					- But surprisingly, package size has no effect on cold start.
 				</aside>
 			</section>
 
@@ -250,7 +250,7 @@
 				<h2>Maturity</h2>
 
 				<aside class="notes" data-markdown>
-					- serverless as an idea exist only for the past 3 years.
+					- Serverless as an idea exist only for the past 3 years.
 					- Thigs are still chaning, often in the background without any explanation from vendors.
 					- New functionalitis are slowly introduced (Google still only supports only JS, AWS Lambda can't be triggered from Simple Queue Service events...)
 					- Debugging is problematic, it's often try-and-error based.
@@ -261,9 +261,11 @@
 				<h2>Deployment</h2>
 
 				<aside class="notes" data-markdown>
-					- iskreno, može se sve napraviti ručno, preko AWS management console, ali nemojte, nepotrebno si komplicirate život.
-					- ako ste obrisali funkciju, obrisali ste i sve postavke vezane za nju, ako koristite alate onda sve postavke imate u version control sustavu i lako napravite ponovni deploy.
-					- također, podešavanje API gatewaya nikad nije nikome stavilo osmijeh na lice
+					- Honestly, everything can be done by hand, through AWS management console, but just don't.
+					- You are just making it more difficult for your self.
+					- If you've deleted a function, you've also delete all of the functions configurations.
+					- But if you are using any toolkit you can have all the configs in version control so you can easily redeploy.
+					- Also, setting up AWS's API gateway never brought a smile to anyones face.
 				</aside>
 			</section>
 
@@ -298,19 +300,19 @@
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- Za početak tu je AWS-ov command line interface.
-					- nije veliki korak naprijed od ručnog podešavanja, pogotovo kada shvatite koja kobasica je potrebna za inicijalni deployment
+					- For start we have AWS's command line interface
+					- Not a big upgrade from manual configurations, especially when you see the lenghty piece of command you need for initial deployment.
 
 					- zato su se i razvila tri alata koji olakšavaju cijelokupni deployment i update
 					- Serverless je toolkit za postavljanje serverless arhitekture.
 					- Razvijan kao alat za JS, Python, Javu i C#.
 					- Trude se biti i platform agnostic, ali je na žalost na trenutke to nemoguće zbog samih providera.
 
-					- Chalice je razvio AWS i reklamira ga kao "Python Serverless Microframework"
-					- slično kao i Flask koristi dekoratore za rute
-					- u potpunosti je orijentiran na serverless i minimalizam i daje jednostavno cli sučelje prema Lambdi
-					- preporuka ako imate u glavi nešto brutalno jednostavno s jednim ili dva API pointa
-					- sve u svemu, dobar alat
+					- Chalice was created by AWS and is advertised as "Python Serverless Microframework".
+					- Similar to Flask it uses decorators for declaring routes.
+					- It's completely oriented on serverless and minimalism and provides the most straight forward cli to Lambda.
+					- Recommendation if you plan to do something brutally simple with max one or two API points with minimum logic.
+					- All in all, a solid tool.
 
 					- Zappa je nastala kao ideja da se omogući deployanje WSGI appova na Lambdu.
 					- Razmišljajte u okvirima Djanga, Flaska, Bottlea, novog APIStara i sličnih.
@@ -318,8 +320,8 @@
 					- Funkcija prima request i obrađuje ga.
 					- Kada funkcija obavi svoje, response se šalje opet kroz API Gateway i dalje do klijenta.
 
-					- Zajedničko svima trima je jednostavnost.
-					- Odaberite alat koji vama ima najviše smisla za vaše potrebe.
+					- A common thing for all three tools is simplicity.
+					- So just choose a tool that makes most sense for your needs.
 				</aside>
 			</section>
 
@@ -355,8 +357,8 @@
 				<img class="fragment" data-fragment-index="1" src="media/realGrickiTop.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- a ta zafrkancija je bila "realGričkiTop".
-					- Twitter account koji poput i "realDonaldTrump" accounta svaki dan očekivano točno u podne tweeta gluposti.
+					- and that joke was "realGričkiTop".
+					- A Twitter account that just like the "realDonaldTrump" account everyday exactly at noon tweets a bunch of nonsense.
 				</aside>
 			</section>
 
