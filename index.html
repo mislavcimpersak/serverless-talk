@@ -340,11 +340,11 @@
 				<h2>Examples</h2>
 
 				<aside class="notes" data-markdown>
-					- Kada sam prije par dana počeo pripremati talk za ovaj Meetup razmišljao sam kakav primjer bi pokazao.
-					- Htio sam vam pokazati nešto dovoljno zanimljivo, a opet ne prekomplicirano da sebi ne zagorčam život.
-					- I sjetio sam se jedne zafrkancije od prije par mjeseci.
-					- Ideja koja je stajala sa strane baš iz razloga jer mi se nije samo zbog toga plaćati hosting i podešavati server.
-					- Iskreno, jedino što mi se dalo je napisati 20-30 linija koda i pustiti tu zafrkanciju van.
+					- When I first started writing this talk I was pondering what kind of example should I present.
+					- I wanted to show something that is interesting enough, but still not too complicated to make my life miserable.
+					- And I remembered a joke I had few months ago with my friends.
+					- An idea that was put on ice just because I didn't feel like paying hosting and setting up server just for it.
+					- Honestly, only thing I did feel like doing was writing 20-30 lines of code and release my joke in to the wild.
 				</aside>
 			</section>
 
@@ -394,17 +394,17 @@ zappa invoke prod 'main.post_tweet'
 				</div>
 
 				<aside class="notes" data-markdown>
-					- Za prvu verziju stvar je bil poprilično jednostavna.
-					- Napisao sam tridesetak linija koda koje su se svele na poziv moje custom metode za postanje tweeta.
-					- Složio sam i bazični `zappa_settings.json` file.
-					- `aws_region` je dovoljno da je samo jedan, može se deployati i globalno, ali za ovaj primjer nema smisla.
-					- `secrets.py` je "flat" json file u kojemu su zapisani svi credentialsi i on je hostan na S3 bucketu.
-					- Tako ovaj kod može biti i open sourcean.
+					- First iteration was fairly simple.
+					- I wrote about 30 lines of code that could be sum up to a call to my custom method for posting a tweet.
+					- I created a basic `zappa_settings.json` file.
+					- It's enough to have only one `aws_region`, but it could be deployed globaly, but it doesn't make much sense for a project like this.
+					- `secrets.py` is a "flat" json file in which I wrote all credentials and it's hosted on an S3 bucket.
+					- That way I could open source my code.
 
-					- Budući da je ovo funkcija koja ne treba biti dostupna preko HTTP-a, onemogućio sam API Gateway.
-					- I na koncu sam deployao na lambdu.
-					- Zappa ima posebnu komandu kojom se može pozvati bilo koja funkcija na Lambdi za lako testiranje
-					- i sve je radilo savršeno
+					- Since this is a function that doesn't have to be available over HTTP, I disabled API Gateway.
+					- And in the end I deployed to Lambda.
+					- Zappa has a special command that can be used to call any function or code on Lambda for easy testing.
+					- And everything worked perfectly.
 				</aside>
 			</section>
 
