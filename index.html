@@ -45,7 +45,6 @@
 		<div class="slides">
 			<section>
 				<h1>Serverless</h1>
-				<!-- ovo precrtati pa napisati FaaS? -->
 				<h4>⚡ Buzzword of the season ⚡</h4>
 
 				<br>
@@ -57,10 +56,10 @@
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- Dobar dio vas me zna, za vas koji me ne znaju, ja sam Mislav.
-					- Nakon više godina nagovaranja nekoliko voditelja našeg meetupa napokon sam popustio Hrvoju i pristao da održim talk.
-					- Serverless je nešto o čemu svi pričamo, a malo nas je stvarno i napravilo nešto konkretno.
-					- U zadnjih par tjedana uzeo sam si vremena da se konačno poigram s ovom novom tehnologijom, pa sam odlučio s vama podijeliti svoja iskustva i neke eksperimente.
+					- Hello! I'm Mislav, web developer from Zagreb.
+					- Primarily Python dev, but lately more and more dabbling with the ops side of my "full stack developer" title.
+					- Serverless is something we're all talking about, but only a few actually had a chance to make something.
+					- In the past few weeks I took some time to finally play with this fairly new technology so I decided to share with you my experience and experiments.
 				</aside>
 			</section>
 
@@ -70,8 +69,8 @@
 				<p>&nbsp;</p>
 
 				<aside class="notes" data-markdown>
-					- Što je uopće "serverless"?
-					- Sam po sebi je to podosta apsurdan pojam, ali je ušao u svakodnevni IT vokabular kao brojni drugi u IT žargonu.
+					- What is "serverless"?
+					- The term on it's own it's a bit apsurd, but it entered our regular IT vocabulary like many other nonsensical terms in IT jargon.
 				</aside>
 			</section>
 
@@ -81,18 +80,18 @@
 				<p class="fragment" data-fragment-index="1">Function-as-a-Service</p>
 
 				<aside class="notes" data-markdown>
-					- Serverless ne znači da stvarno ne postoje serveri, već da developeri ne moraju razmišljati o njima.
-					- Tako je u biti, što se tiče developera, serverless stvarno bez servera.
-					- Većina programera danas ne piše kod u asembleru, već koriste moderne programske jezike koji sami znaju koristiti procesor, memoriju, mrežne resurse, spremljene podatke.
-					- Serverless ovo podiže još jedan korak više, apstrahirajući još jedan sloj - infrastrukturu.
+					- Serverless doesn't really mean that there are no servers, but that the developers don't have to worry about them.
+					- So in essence, at least from the developers point of view, serverless really is without servers.
+					- These days most developers aren't writing their code in assembly. Instead they are using modern programming languages that know on their own how to properly use CPU, memory, network resources, stored data.
+					- Serverless takes this even one step further, apstracting another layer - infrastructure.
 
-					- Developeri stvaraju male blokove koda - funkcije - koje se pozivaju kada su potrebne.
-					- Kada se funkcija pozove, platforma na kojoj je funkcija spremljena starta resurse potrebne za izvršavanje i vraća rezultat.
-					- Takve funkcije se mogu nizati i međusobno povezivati u svrhu stvaranja kompleksnijih aplikacija.
-					- Svaka funkcija je onda pozvana ako i kada je potrebna, zavisno o logici aplikacije.
-					- Ostatak vremena funkcija ne troši gotovo nikakve resurse.
+					- Developers build small blocks of code - functions - which are invoked when needed.
+					- When a function is invoked, platform on which the function is stored starts resources needed for execution and returns result.
+					- Such functions can be chained and interlinked to create complex applications.
+					- Each function is then called if and when needed, depending of application logic.
+					- Rest of the time, the function is not using any resources.
 
-					- Dakle, ako gledamo serverless kroz prizmu funkcija dolazi se do boljeg naziva tehnologije, a to je Function-as-a-Service.
+					- So, if we observe serverless from the point of simple functions we get to a better name, and that is Function-as-a-Service.
 				</aside>
 			</section>
 
@@ -124,16 +123,16 @@
 				<p style="text-align: left; font-size: 0.7em;" class="fragment"><a href="https://cloudacademy.com/blog/microsoft-azure-functions-vs-google-cloud-functions-fight-for-serverless-cloud-domination-continues/">*detaljnija usporedba</a></p>
 
 				<aside class="notes" data-markdown>
-					- najpoznatiji pružatelj Function-as-a-Service usluga je AWS-ova Lambda
-					- koja je često poistovjećena s Function-as-a-Service rješenjima i većina blog postova na webu govore upravo o njoj.
-					- Ali kako je i za očekivati postoje i ekvivalentna rješenja na drugim cloud providerima.
+					- AWS's Lambda is the most famous Function-as-aservice provider.
+					- Most of the blog posts you can find online talks about it.
+					- But, as it expected, there are equivalent solutions on other cloud providers.
 
-					- Microsoft ima Azure Functions, a Google ima Google Cloud Functions.
-					- AWS i Azure podržavaju otprilike isti set jezika, dok je Google ostao samo na JS-u
-					- Sva tri providera pružaju jednak free tier od 1M izvršenih requestova mjesečno za sve funkcije u jednom računu.
+					- Microsoft has Azure Functions and Google has Google Cloud Functions.
+					- Aproximately same set of programming languages are supported by AWS and Azure, while Google only supports JS.
+					- All three provides allow same free tier of 1M monthly requests for all functions per account.
 
-					- Svi provideri su usko vezani za svoju platformu, pa onda sukladno tome i triggeri koji mogu pokrenuti funkciju su redovito unutar ekosustava providera.
-					- Iznimka je HTTP promet koji je svima zajednički trigger.
+					- All providers are tightly integrated in their platforms. And thus acordingly the triggers that can run a function are regulary with the provider's ecosystem.
+					- The obvious exception is HTTP traffic that is a common trigger for all of them.
 				</aside>
 			</section>
 
@@ -141,8 +140,8 @@
 				<h2>Advantages</h2>
 
 				<aside class="notes" data-markdown>
-					- Moram prije nego što počnem pričati o predostima priznati da sam trenutno s FaaS-om u honeymoon fazi.
-					- Sve mi je divno i krasno, a sve loše stvari ne uzimam za zlo.
+					- Before I continue talking about advantages I must confess that I'm currently in a honeymoon phase with FaaS.
+					- Everything is beautiful and dandy, and everything that is not so great I'm not seeing as such a bad thing.
 				</aside>
 			</section>
 
@@ -150,12 +149,13 @@
 				<h2>Idea to launch</h2>
 
 				<aside class="notes" data-markdown>
-					- Vrijeme do objave je po meni najveći i najvažniji benefit.
-					- Recimo da imate ideju i želite ju čim prije pokazati svijetu.
-					- Uobičajeni koraci za to su:
-					- ideja, pisanje koda, zakup servera, instaliravanje os-a, instaliravanje web servera, instaliravanje wsgi servera, podešavanje supervisora, podešavanje firewalla, podešavanje backupa, još 10 takvih stvari i tek onda launch.
-					- A realno jedino što vas zanima kao developera (pogotovo za nekakav side project) je ideja, pisanje koda i objava stvorenog.
-					- Sve ostalo se može prepustiti nekome drugome.
+					- Time to launch is by far the biggest and most important benefit.
+					- Let's say you have an idea and you wan't to show it to the world as soon as possible.
+					- The usual steps for it are:
+					- the idea itself, writing code, buying a server, installing OS, installing web server, installing WSGI server, setting up supervisor, setting up firewall, setting up backup, and 10 more tasks like that and only than launch.
+					- And honestly, the only thing that is of any interest to you as a developer (especially for a side project) is idea, writing code and publishing your creation.
+					- Anything else can be someone else's problem.
+					- Which leads us to the second advantage:
 					- Što nas vodi do druge prednosti:
 				</aside>
 			</section>
@@ -164,9 +164,9 @@
 				<h2>No system administration</h2>
 
 				<aside class="notes" data-markdown>
-					- U arhitekturi koja je u potpunosti serverless (sve je bazirano na API-ima) nema potrebe za sistemcem.
-					- Ne postoje bash skripte, startanje i stopiranje servisa itd.
-					- Jedino što je potrebno je napisati kod, zazipati ga i uploadati ga na FaaS platformu.
+					- In a completely serverless architecture there is no need for a sys admin.
+					- There are no bash scripts, starting and stoping services and things like that.
+					- Only thing that is necessary is writing the code, packaging it and uploading it to a FaaS platform.
 				</aside>
 			</section>
 
@@ -174,12 +174,12 @@
 				<h2>Automatic scaling</h2>
 
 				<aside class="notes" data-markdown>
-					- Nemamo sistemca, ali imamo skaliranje.
-					- Jednom kada ste napisali svoju funkciju odjednom imate tisuću njih na raspolaganju koje spavaju i čekaju da obave task koji im date i to sve unutar par milisekundi od kada ih aktivirate
+					- We don't have sys admins, but we do have scaling.
+					- Once you have written your function, suddenly you have thousands of them at your disposal that are sleeping and just waiting to complete a task you provide them and all that withing microseconds from activation.
 					----
-					- Skaliranje radi u oba smjera
-					- Zašto plaćati za servere kada se ne koriste.
-					- Plaća se samo vremena izvršavanja, ne i hladni pogon.
+					- Of course, scaling works both ways.
+					- Why pay for servers when you are not using them.
+					- You only pay for executions, not the server's idle time.
 				</aside>
 			</section>
 
@@ -187,13 +187,14 @@
 				<h2>Parallelization</h2>
 
 				<aside class="notes" data-markdown>
-					- Paralelizacija je povezana s automatskim skaliranjem, ali je ipak drugačija. Ne samo da imate na raspolaganju stotine funkcija koje čekaju vaš task, već imate stotine funkcija koje mogu istovremeno obaviti isti task.
-					- primjer:
-					- Recimo da imamo document store bazu u koju zapisujemo članke.
-					- Recimo da sada želimo na sve članke dodati ili ukloniti neku informaciju.
-					- Uobičajeni način bi bio da se napiše skripta koja bi prolazila kroz jedan po jedan članak i editirala ga.
-					- Imamo 50.000 članaka i editiranje svakog traje 1 sekundu. To je ukupno otprilike 14 sati za 50.000 članaka.
-					- Ako uzmemo u obrzi da je 1000 paralelnih izvršavanja limit na AWS Lambdi, uz pomoć malo pametnije napisane skripte mi možemo upaliti 1000 Lambdi i obaviti sav posao ispod minute.
+					- Parallelization is linked to automatic scaling, but it's still different.
+					- Not only that you have at your disposal hundreads of functions that are waiting for your task, but you have hundreads functions that can do the same task at the same time.
+					- example:
+					- Let's say that we have a document store database in which we are writting articles.
+					- And now we want to add or remove some data on all articles.
+					- The usual way to be to write a script that would go through all articles one by one and edit them.
+					- We have 50.000 articles and it takes 1 second to edit an article. That's a bit less than 14 hours for 50.000 articles.
+					- If we take into consideration that the current limit on AWS's Lambda is 1000 concurrent executions, with the help of a bit smarter script we can start 1000 Lambda functions and get all the work done under a minute.
 				</aside>
 			</section>
 
@@ -201,10 +202,10 @@
 				<h2>Change in mindset</h2>
 
 				<aside class="notes" data-markdown>
-					- "Promjena razmišljanja" je prednost koja je malo manje opipljiva, ali podosta bitna za današnje aplikacije.
-					- FaaS potiče razvijanje malih dijelova, slobodnije povezanih.
-					- Unix filozofija u unix način razmišljanja - probleme je jednostavnije riješiti ako ih se razbije u manje dijelove.
-					- FaaS po tome i savršeno pristaje i potiče arhitekturu mikroservisa.
+					- "Change in mindset" is a bit less tangible advantage, but quite important for today's applications.
+					- FaaS incourages creating small parts, loosely conected.
+					- Unix philosophy and Unix way of thinking - problems are easier to solve if they are broken into smaller pieces.
+					- FaaS as such perfectly fits and encourages microservices architecture.
 				</aside>
 			</section>
 
@@ -212,8 +213,8 @@
 				<h2>Disadvantages</h2>
 
 				<aside class="notes" data-markdown>
-					- Naravno, nije sve bajno.
-					- Mane postoje.
+					- Of course, not everyting is so great.
+					- There are flaws.
 				</aside>
 			</section>
 
@@ -221,9 +222,9 @@
 				<h2>Vendor lock in</h2>
 
 				<aside class="notes" data-markdown>
-					- Svi veliki provideri imaju svoju zatvorenu i specifičnu samo njima implementaciju.
-					- Postoje u nekim projektima pokušaji da se stvore slojevi abstrakcije koji se bore s ovim problemom i omogućuju da se napisani kod vrti na bilo kojem pružatelju usluga.
-					- Na žalost, za sada je to više u fazi pokušaja, nego da je out-of-the-box rješenje.
+					- Unfortunately all the top vendors have their own closed and specific solely to them implementation.
+					- There are in some projects attempts to create abstractions layers that should combat this problem and make it possible to run the code on any provider.
+					- But, for now it's all more in the "attempt phase", than a proper out-of-the-box solution.
 				</aside>
 			</section>
 
@@ -235,12 +236,13 @@
 				</p>
 
 				<aside class="notes" data-markdown>
-					- Pod prednostima sam naveo da funkcije kada se ne koriste se "ugase" što je dobra stvar. Loša stvar je da im je za ponovno paljenje inicijalno potrebno nešto više vremena.
-					- AWS ubija funkcije nakon više od 5 minuta neaktivnosti. Ponekad je to pola sata, a ponekad 5 minuta i 2 sekunde. Zašto ubija točno kada ubija, to samo Amazon zna.
-					- Mi Python developeri imamo ovdje sreće, jer se kod Pythona i dalje radi o par sekundi, dok se Java i C# developeri trebaju pripremiti i na 100 puta dulji start.
-					- Dao sam ovdje link na blog post u kojemu jedan developer podosta ekstenzivno radi usporedbe, zanimljivo pogledati ako zbog ničeg drugoga onda da vidite kako nam je lijepo što radimo s Pythonom.
-					- Povećanjem memorije koju date funkciji smanjujete vrijeme hladnog paljenja
-					- začuđujuće, veličina paketa ne utječe na vrijeme hladnog paljenja
+					- Under advantages I've said that functions when not used are "turned off" what is a good thing.
+					- Bad thing is that for the initial start it takes a bit more time.
+					- AWS kill functions after more than 5 minutes of inactivity. Sometimes that's half an hour and sometimes 5 minutes and 2 secs. Why does it kill them exactly when it kills them, only Amazon knows.
+					- We as Python developers are in luck, because when it comes to Python it is still only a few seconds max, while Java and C# developers need to prepare them self for more than 100 times lower starting times.
+					- I gave here an URL to a blogpost in which a developer does a really extensive comparison, it's interesting to have a look if for nothing more than to see how nice it is to be a Python developer.
+					- Increasing memory available to function lowers down cold start time.
+					- But surprisingly, package size has no effect on cold start.
 				</aside>
 			</section>
 
@@ -248,10 +250,10 @@
 				<h2>Maturity</h2>
 
 				<aside class="notes" data-markdown>
-					- serverless kao ideja postoji tek 3 godine
-					- Stvari se i dalje mijenjaju, često u pozadini bez objašnjenja pružatelja usluga.
-					- Nove funkcionalnosti se dosta polako uvode (Google i dalje ima samo podršku za JavaScript, AWS Lambda ne može pratiti Simple Queue Service Evente...)
-					- debugging je problematičan, često se svede na try-and-error
+					- Serverless as an idea exist only for the past 3 years.
+					- Thigs are still chaning, often in the background without any explanation from vendors.
+					- New functionalitis are slowly introduced (Google still only supports only JS, AWS Lambda can't be triggered from Simple Queue Service events...)
+					- Debugging is problematic, it's often try-and-error based.
 				</aside>
 			</section>
 
@@ -259,9 +261,11 @@
 				<h2>Deployment</h2>
 
 				<aside class="notes" data-markdown>
-					- iskreno, može se sve napraviti ručno, preko AWS management console, ali nemojte, nepotrebno si komplicirate život.
-					- ako ste obrisali funkciju, obrisali ste i sve postavke vezane za nju, ako koristite alate onda sve postavke imate u version control sustavu i lako napravite ponovni deploy.
-					- također, podešavanje API gatewaya nikad nije nikome stavilo osmijeh na lice
+					- Honestly, everything can be done by hand, through AWS management console, but just don't.
+					- You are just making it more difficult for your self.
+					- If you've deleted a function, you've also delete all of the functions configurations.
+					- But if you are using any toolkit you can have all the configs in version control so you can easily redeploy.
+					- Also, setting up AWS's API gateway never brought a smile to anyones face.
 				</aside>
 			</section>
 
@@ -296,28 +300,28 @@
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- Za početak tu je AWS-ov command line interface.
-					- nije veliki korak naprijed od ručnog podešavanja, pogotovo kada shvatite koja kobasica je potrebna za inicijalni deployment
+					- For start we have AWS's command line interface
+					- Not a big upgrade from manual configurations, especially when you see the lenghty piece of command you need for initial deployment.
 
-					- zato su se i razvila tri alata koji olakšavaju cijelokupni deployment i update
-					- Serverless je toolkit za postavljanje serverless arhitekture.
-					- Razvijan kao alat za JS, Python, Javu i C#.
-					- Trude se biti i platform agnostic, ali je na žalost na trenutke to nemoguće zbog samih providera.
+					- Because of this complex procedure three tools were developed that take out the guess work out of deployment and update.
+					- Serverles is a toolkit for setting up serverless architecture.
+					- It is being developed as a tool for JS, Python, Java and C#.
+					- Project developers are trying to be platform agnostic, but unfortunately that is still impossible because of the providers them self.
 
-					- Chalice je razvio AWS i reklamira ga kao "Python Serverless Microframework"
-					- slično kao i Flask koristi dekoratore za rute
-					- u potpunosti je orijentiran na serverless i minimalizam i daje jednostavno cli sučelje prema Lambdi
-					- preporuka ako imate u glavi nešto brutalno jednostavno s jednim ili dva API pointa
-					- sve u svemu, dobar alat
+					- Chalice was created by AWS and is advertised as "Python Serverless Microframework".
+					- Similar to Flask it uses decorators for declaring routes.
+					- It's completely oriented on serverless and minimalism and provides the most straight forward cli to Lambda.
+					- Recommendation if you plan to do something brutally simple with max one or two API points with minimum logic.
+					- All in all, a solid tool.
 
-					- Zappa je nastala kao ideja da se omogući deployanje WSGI appova na Lambdu.
-					- Razmišljajte u okvirima Djanga, Flaska, Bottlea, novog APIStara i sličnih.
-					- Zappa sama podesi API Gateway tako da kada dođe request Gateway pokrene Lambda funkciju.
-					- Funkcija prima request i obrađuje ga.
-					- Kada funkcija obavi svoje, response se šalje opet kroz API Gateway i dalje do klijenta.
+					- Zappa was created as an idea to enable deployment of WSGI apps to Lambda.
+					- Think about likes like Django, Flask, Bottle, Falcon, Hug, new APIStar etc.
+					- Zappa sets up API gateway on it's own, so that when an http request arrives, Gateway starts the function.
+					- Function than takes the request and processes it.
+					- When the function is done, response is being set back through API gateway all the way to the client.
 
-					- Zajedničko svima trima je jednostavnost.
-					- Odaberite alat koji vama ima najviše smisla za vaše potrebe.
+					- A common thing for all three tools is simplicity.
+					- So just choose a tool that makes most sense for your needs.
 				</aside>
 			</section>
 
@@ -325,10 +329,10 @@
 				<img src="media/xkcd_uploading_to_aws.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- inače, kada lupite `deploy` ili `update` je trenutak u kojemu počinjete shvaćati brzinu uploada koju imate kod kuće
-					- dobra stvar je da deployment ne čini funkciju nedostupnom, već kada se sljedeća instanca starta, starta se s novim kodom.
+					- Btw. when you hit `deploy` or `update` is the moment in which you start to understand the snail speed of local ISPs.
+					- Good thing is that the deployment is not making the funciton to be unavailable, but when a new instance is started it is started with the new code.
 
-					- Meni se osobno najviše sviđa Zappa, pa sam stoga i s njom složio sljedeće primjere.
+					- I preferrer Zappa, so that's the one I chose for the next couple of examples.
 				</aside>
 			</section>
 
@@ -336,11 +340,11 @@
 				<h2>Examples</h2>
 
 				<aside class="notes" data-markdown>
-					- Kada sam prije par dana počeo pripremati talk za ovaj Meetup razmišljao sam kakav primjer bi pokazao.
-					- Htio sam vam pokazati nešto dovoljno zanimljivo, a opet ne prekomplicirano da sebi ne zagorčam život.
-					- I sjetio sam se jedne zafrkancije od prije par mjeseci.
-					- Ideja koja je stajala sa strane baš iz razloga jer mi se nije samo zbog toga plaćati hosting i podešavati server.
-					- Iskreno, jedino što mi se dalo je napisati 20-30 linija koda i pustiti tu zafrkanciju van.
+					- When I first started writing this talk I was pondering what kind of example should I present.
+					- I wanted to show something that is interesting enough, but still not too complicated to make my life miserable.
+					- And I remembered a joke I had few months ago with my friends.
+					- An idea that was put on ice just because I didn't feel like paying hosting and setting up server just for it.
+					- Honestly, only thing I did feel like doing was writing 20-30 lines of code and release my joke in to the wild.
 				</aside>
 			</section>
 
@@ -353,8 +357,8 @@
 				<img class="fragment" data-fragment-index="1" src="media/realGrickiTop.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- a ta zafrkancija je bila "realGričkiTop".
-					- Twitter account koji poput i "realDonaldTrump" accounta svaki dan očekivano točno u podne tweeta gluposti.
+					- and that joke was "realGričkiTop".
+					- A Twitter account that just like the "realDonaldTrump" account everyday exactly at noon tweets a bunch of nonsense.
 				</aside>
 			</section>
 
@@ -390,17 +394,17 @@ zappa invoke prod 'main.post_tweet'
 				</div>
 
 				<aside class="notes" data-markdown>
-					- Za prvu verziju stvar je bil poprilično jednostavna.
-					- Napisao sam tridesetak linija koda koje su se svele na poziv moje custom metode za postanje tweeta.
-					- Složio sam i bazični `zappa_settings.json` file.
-					- `aws_region` je dovoljno da je samo jedan, može se deployati i globalno, ali za ovaj primjer nema smisla.
-					- `secrets.py` je "flat" json file u kojemu su zapisani svi credentialsi i on je hostan na S3 bucketu.
-					- Tako ovaj kod može biti i open sourcean.
+					- First iteration was fairly simple.
+					- I wrote about 30 lines of code that could be sum up to a call to my custom method for posting a tweet.
+					- I created a basic `zappa_settings.json` file.
+					- It's enough to have only one `aws_region`, but it could be deployed globaly, but it doesn't make much sense for a project like this.
+					- `secrets.py` is a "flat" json file in which I wrote all credentials and it's hosted on an S3 bucket.
+					- That way I could open source my code.
 
-					- Budući da je ovo funkcija koja ne treba biti dostupna preko HTTP-a, onemogućio sam API Gateway.
-					- I na koncu sam deployao na lambdu.
-					- Zappa ima posebnu komandu kojom se može pozvati bilo koja funkcija na Lambdi za lako testiranje
-					- i sve je radilo savršeno
+					- Since this is a function that doesn't have to be available over HTTP, I disabled API Gateway.
+					- And in the end I deployed to Lambda.
+					- Zappa has a special command that can be used to call any function or code on Lambda for easy testing.
+					- And everything worked perfectly.
 				</aside>
 			</section>
 
@@ -412,16 +416,16 @@ zappa invoke prod 'main.post_tweet'
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- I tu su onda počeli problemi.
-					- Najveći da se tweet stvarno i posta svaki dan u podne.
-					- U Hrvatskoj.
-					- AWS-ovi serveri su na UTC vremenu, a Hrvatska jelte nije.
-					- Postavljanje time zone aware schedulera koji još pazi na daylight saving hours je apsurdno.
-					- Debugiranje zašto nešto ne radi je hit and miss.
-					- Zappa radi nepotrebno velike .zip fajlove. Zašto? Ne znam.
-					- Kopa po site-packages i samo ubacuje sve, od pep8 paketa, pytest-a, coveragea, jupytera... Sve.
-					- Rješenje je pisanje poprilično dugačke liste excludeova.
-					- I onda opet try-and-error da uopće vidim dal funkcija i dalje radi.
+					- And than the problems started.
+					- The biggest was that the tweet had to be sent every day at noon.
+					- In Croatia.
+					- AWS servers are on UTC time, and well, Croatia is not.
+					- Setting up time zone aware scheduler which takes into account daylight saving hours is apsurd.
+					- Debugging is a hit and miss.
+					- Zappa created unnecessarily large .zip files. Why? No idea.
+					- It goes though site-packages dir and just adds everything, from pep8 package, pytest, coverage, jupyter,... everything.
+					- The solution is to write a really long list of excludes.
+					- And than again try-and-error to see if the function is still working.
 				</aside>
 			</section>
 
@@ -434,9 +438,9 @@ zappa invoke prod 'main.post_tweet'
 				<img class="fragment" data-fragment-index="1" src="media/xkcd_blank_excuse.png" alt="">
 
 				<aside class="notes" data-markdown>
-					- Ideja za drugi primjer je došla dok sam pripremao ovaj talk.
-					- Uzima ovu praznu sliku i pretvara ju u sliku sa željenim izgovorom.
-					- Sada možemo kliknuti na ovaj link i isprobati stvari u browseru.
+					- Idea for the second example came to me while I was preparing this talk.
+					- It takes this empty image and transforms it into an image with the desired excuse.
+					- Now we can click this URL and try it in a browser.
 						- "my dependencies are installing"/"deps"
 						- "my docker image is building"/"building"
 				</aside>
@@ -462,11 +466,11 @@ if __name__ == "__main__":
 				</code></pre>
 
 				<aside class="notes" data-markdown>
-					- U osnovi to je obični Flask app
-					- Štos je da serviram generirane slike direktno iz Lambde.
-					- Slike nikad nisu spremljene, a da jesu, trebale bi biti na S3, pa bi onda u idealnom svijetu imao i neki cache ispred toga i tako dalje...
-					- Uglavnom, bar pola sata više posla :D
-					- A i ovako mi sve ostaje unutar troškova Lambde.
+					- Basically, it's a normal Flask app.
+					- The gist of it is that I'm serving images directly from Lambda.
+					- Images are never saved, and if they were, they should be saved on S3, and in an ideal world cached and so on and so on.
+					- At least half an hour more work :D
+					- And this way everything and all the costs stay within Lambda.
 				</aside>
 			</section>
 
@@ -487,9 +491,9 @@ if __name__ == "__main__":
 				</code></pre>
 
 				<aside class="notes" data-markdown>
-					- S ovim primjerom sam se više igrao i čak u nekom trenu poslao nekim ljudima link.
-					- Pa stoga nisam mogao samo tako editirati postojeću funkciju.
-					- Tu sam iskoristio mogućnost Zappe da radim deploy na više stageova.
+					- With this example I've toyed a bit more and even at some point send the URL to some people.
+					- Because of it I couldn't just edit and test existing function.
+					- So here I took Zappa's advantage of creating several deploy stages.
 				</aside>
 			</section>
 
@@ -500,11 +504,12 @@ if __name__ == "__main__":
 				</ul>
 
 				<aside class="notes" data-markdown>
-					- Dosta ručne zafrkancije je potrebno za serviranje slike direktno.
-					- Vjerojatno se to još može optimizirati, ali budući da je složeno za manje od sat vremena sam zadovoljan.
-					- na žalost IOpipe koji mi je bio izvrstan za monitoring non-WSGI funkcija ne radi za WSGI app-ove.
-					- Trenutno je razvoj python plugina "na pauzi".
-					- Šteta jer je IOpipe realno jedini specijalizirani monitoring FaaS-ova.
+					- It taks a bit of fooling around to serve images directly.
+					- Probably it can still be optimized, but since it was setup up in less than an hour, I'm happy.
+					- Unfortunately, IOpipe which was excellent for monitoring non-WSGI functions isn't working for WSGI apps.
+					- The development of the official python plugin is currently on break.
+					- I've tried to add somethings to it, but still no response on the official Github repo.
+					- Too bad since IOpipe is really the only specialized FaaS monitoring service.
 				</aside>
 			</section>
 
@@ -512,11 +517,11 @@ if __name__ == "__main__":
 				<h2>Wrap up</h2>
 
 				<aside class="notes" data-markdown>
-					- FaaS je fantastičan za microservices
-					- ali nemojte biti ludi i cijelu arhitekturu postaviti na serverlessu.
-					- Da, ima i takvih primjera.
-					- Ako imate neki mini projektić ili možete izdvojiti neki dio vašeg sustava, go for it.
-					- Prihvatite Function-as-a-service način razmišljanja čim ranije, FaaS is here to stay.
+					- FaaS is fantastic for microservices
+					- but don't go crazy and plan your whole architecture on serverless.
+					- Yes, I've seen such examples.
+					- If you have some mini project or you can take out a piece of your system, go for it.
+					- Embrace Function-as-a-Service state of mind as soon as possible; FaaS is here to stay.
 				</aside>
 			</section>
 
