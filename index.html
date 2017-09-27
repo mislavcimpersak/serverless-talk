@@ -59,7 +59,7 @@
 					- Hello! I'm Mislav, web developer from Zagreb.
 					- Primarily Python dev, but lately more and more dabbling with the ops side of my "full stack developer" title.
 					- Serverless is something we're all talking about, but only a few actually had a chance to make something.
-					- In the past few weeks I took some time to finally play with this fairly new technology so I decided to share with you my experience and experiments.
+					- In the past few weeks I took some time to finally play with this fairly new technology so I decided to share with you what I've learned and some of my experiments.
 				</aside>
 			</section>
 
@@ -120,12 +120,12 @@
 						<td class="fragment providers" data-fragment-index="30">Blob, EventHub, Generic WebHook, GitHub WebHook, Queue, Http, ServiceBus Queue, Service Bus Topic, Timer triggers</td>
 					</tr>
 				</table>
-				<p style="text-align: left; font-size: 0.7em;" class="fragment"><a href="https://cloudacademy.com/blog/microsoft-azure-functions-vs-google-cloud-functions-fight-for-serverless-cloud-domination-continues/">*detaljnija usporedba</a></p>
+				<p style="text-align: left; font-size: 0.7em;" class="fragment"><a href="https://cloudacademy.com/blog/microsoft-azure-functions-vs-google-cloud-functions-fight-for-serverless-cloud-domination-continues/">*detailed comparison</a></p>
 
 				<aside class="notes" data-markdown>
 					- AWS's Lambda is the most famous Function-as-aservice provider.
-					- Most of the blog posts you can find online talks about it.
-					- But, as it expected, there are equivalent solutions on other cloud providers.
+					- And is the one most mentioned in online blog posts.
+					- But, as it is expected, there are equivalent solutions on other cloud providers.
 
 					- Microsoft has Azure Functions and Google has Google Cloud Functions.
 					- Aproximately same set of programming languages are supported by AWS and Azure, while Google only supports JS.
@@ -151,12 +151,11 @@
 				<aside class="notes" data-markdown>
 					- Time to launch is by far the biggest and most important benefit.
 					- Let's say you have an idea and you wan't to show it to the world as soon as possible.
-					- The usual steps for it are:
+					- The usual steps are:
 					- the idea itself, writing code, buying a server, installing OS, installing web server, installing WSGI server, setting up supervisor, setting up firewall, setting up backup, and 10 more tasks like that and only than launch.
 					- And honestly, the only thing that is of any interest to you as a developer (especially for a side project) is idea, writing code and publishing your creation.
 					- Anything else can be someone else's problem.
 					- Which leads us to the second advantage:
-					- Što nas vodi do druge prednosti:
 				</aside>
 			</section>
 
@@ -175,7 +174,7 @@
 
 				<aside class="notes" data-markdown>
 					- We don't have sys admins, but we do have scaling.
-					- Once you have written your function, suddenly you have thousands of them at your disposal that are sleeping and just waiting to complete a task you provide them and all that withing microseconds from activation.
+					- Once you have written your function, suddenly you have thousands of them at your disposal that are sleeping and just waiting to complete a task you provide them and all that within microseconds from activation.
 					----
 					- Of course, scaling works both ways.
 					- Why pay for servers when you are not using them.
@@ -205,7 +204,7 @@
 					- "Change in mindset" is a bit less tangible advantage, but quite important for today's applications.
 					- FaaS incourages creating small parts, loosely conected.
 					- Unix philosophy and Unix way of thinking - problems are easier to solve if they are broken into smaller pieces.
-					- FaaS as such perfectly fits and encourages microservices architecture.
+					- FaaS as such fits perfectly and encourages microservice based architecture.
 				</aside>
 			</section>
 
@@ -222,8 +221,8 @@
 				<h2>Vendor lock in</h2>
 
 				<aside class="notes" data-markdown>
-					- Unfortunately all the top vendors have their own closed and specific solely to them implementation.
-					- There are in some projects attempts to create abstractions layers that should combat this problem and make it possible to run the code on any provider.
+					- Unfortunately, all the top vendors have their own closed implementations that are specific solely to them.
+					- There are some attempts to create abstractions layers that should combat this problem and make it possible to run the code on any provider.
 					- But, for now it's all more in the "attempt phase", than a proper out-of-the-box solution.
 				</aside>
 			</section>
@@ -263,7 +262,7 @@
 				<aside class="notes" data-markdown>
 					- Honestly, everything can be done by hand, through AWS management console, but just don't.
 					- You are just making it more difficult for your self.
-					- If you've deleted a function, you've also delete all of the functions configurations.
+					- If you've deleted a function, you've also deleted all of the functions configurations.
 					- But if you are using any toolkit you can have all the configs in version control so you can easily redeploy.
 					- Also, setting up AWS's API gateway never brought a smile to anyones face.
 				</aside>
@@ -330,7 +329,7 @@
 
 				<aside class="notes" data-markdown>
 					- Btw. when you hit `deploy` or `update` is the moment in which you start to understand the snail speed of local ISPs.
-					- Good thing is that the deployment is not making the funciton to be unavailable, but when a new instance is started it is started with the new code.
+					- Good thing is that the deployment is not making the function unavailable, but when a new instance is started it is started with the new code.
 
 					- I preferrer Zappa, so that's the one I chose for the next couple of examples.
 				</aside>
@@ -343,7 +342,7 @@
 					- When I first started writing this talk I was pondering what kind of example should I present.
 					- I wanted to show something that is interesting enough, but still not too complicated to make my life miserable.
 					- And I remembered a joke I had few months ago with my friends.
-					- An idea that was put on ice just because I didn't feel like paying hosting and setting up server just for it.
+					- An idea that was put on ice just because I didn't feel like paying for a server and setting it up just for it.
 					- Honestly, only thing I did feel like doing was writing 20-30 lines of code and release my joke in to the wild.
 				</aside>
 			</section>
@@ -358,7 +357,8 @@
 
 				<aside class="notes" data-markdown>
 					- and that joke was "realGričkiTop".
-					- A Twitter account that just like the "realDonaldTrump" account everyday exactly at noon tweets a bunch of nonsense.
+					- Side note: Grički top is a famous tourist attraction in Zagreb that fires a canon every day at noon.
+					- And realGričkiTop is a Twitter account that just like the "realDonaldTrump" account everyday exactly at noon tweets a bunch of nonsense.
 				</aside>
 			</section>
 
@@ -398,7 +398,7 @@ zappa invoke prod 'main.post_tweet'
 					- I wrote about 30 lines of code that could be sum up to a call to my custom method for posting a tweet.
 					- I created a basic `zappa_settings.json` file.
 					- It's enough to have only one `aws_region`, but it could be deployed globaly, but it doesn't make much sense for a project like this.
-					- `secrets.py` is a "flat" json file in which I wrote all credentials and it's hosted on an S3 bucket.
+					- `secrets.json` is a "flat" json file in which I wrote all credentials and it's hosted on an S3 bucket.
 					- That way I could open source my code.
 
 					- Since this is a function that doesn't have to be available over HTTP, I disabled API Gateway.
@@ -439,7 +439,7 @@ zappa invoke prod 'main.post_tweet'
 
 				<aside class="notes" data-markdown>
 					- Idea for the second example came to me while I was preparing this talk.
-					- It takes this empty image and transforms it into an image with the desired excuse.
+					- It takes this image template and transforms it into an image with the desired excuse.
 					- Now we can click this URL and try it in a browser.
 						- "my dependencies are installing"/"deps"
 						- "my docker image is building"/"building"
