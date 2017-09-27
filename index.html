@@ -453,13 +453,12 @@ app = Flask(__name__)
 @app.route('/blank', methods=['GET'])
 def blank():
   with open(os.path.join(dir_path, 'blank_excuse.png'), 'rb') as blank:
-	return send_file(BytesIO(blank.read()),
-	  attachment_filename='blank_excuse.png', mimetype='image/png')
-
+	return send_file(BytesIO(blank.read()), mimetype='image/png')
 
 @app.route('/', methods=['GET'])
 def root():
-  ...
+  # ... writing on image magic!
+  return send_file(buffer, mimetype='image/png')
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0')
